@@ -1,124 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import "tailwindcss";
 
-:root {
-  --bg-color: #030307;
-  --panel-bg: rgba(13, 12, 22, 0.65);
-  --panel-border: rgba(155, 81, 224, 0.15);
-  --panel-border-hover: rgba(0, 242, 254, 0.3);
-  
-  --text-primary: #f3f2fa;
-  --text-secondary: #9ea0b0;
-  --text-muted: #5e6075;
-  
-  --accent-purple: #9b51e0;
-  --accent-cyan: #00f2fe;
-  --accent-emerald: #10b981;
-  --accent-rose: #f43f5e;
-  
-  --shadow-primary: rgba(155, 81, 224, 0.1);
-  --shadow-glow: rgba(0, 242, 254, 0.15);
-  
-  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Fira Code', monospace;
-  
-  font-family: var(--font-sans);
-  color: var(--text-primary);
-  background-color: var(--bg-color);
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(155, 81, 224, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.06) 0%, transparent 40%);
-  background-attachment: fixed;
-  
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+/* ─── Global Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f3ff;
+  color: #111827;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(3, 3, 7, 0.5);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(155, 81, 224, 0.2);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 242, 254, 0.4);
+/* ─── Mira Body Animations ─────────────────────────────────── */
+@keyframes miraFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-9px); }
 }
 
-/* Base Headings */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #fff;
+@keyframes miraShake {
+  0%        { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-9px); }
+  20%, 40%, 60%, 80% { transform: translateX(9px); }
+  100%      { transform: translateX(0); }
 }
 
-/* Custom animations */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(155, 81, 224, 0.15);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(0, 242, 254, 0.25);
-  }
+@keyframes miraTilt {
+  0%, 100% { transform: rotate(0deg) translateY(0px); }
+  50%       { transform: rotate(-10deg) translateY(5px); }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+@keyframes miraScan {
+  0%, 100% { transform: rotate(-6deg); }
+  50%       { transform: rotate(6deg); }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+@keyframes scanRingOut {
+  0%   { transform: translate(-50%,-50%) scale(0.85); opacity: 0.85; }
+  100% { transform: translate(-50%,-50%) scale(1.45); opacity: 0; }
 }
 
-@keyframes checkPulse {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+  50%       { opacity: 0.85; transform: translate(-50%,-50%) scale(1.15); }
 }
 
-/* Utility classes */
-.glow-effect {
-  animation: pulseGlow 6s infinite ease-in-out;
+@keyframes miraBlink {
+  0%, 85%, 100% { transform: scaleY(1); }
+  90%            { transform: scaleY(0.06); }
 }
 
-.shimmer-bg {
-  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes messageIn {
+  from { transform: translateY(8px) scale(0.97); opacity: 0; }
+  to   { transform: translateY(0) scale(1);      opacity: 1; }
+}
+
+@keyframes dotBounce {
+  0%, 100% { transform: translateY(0); }
+  40%       { transform: translateY(-5px); }
+}
+
+@keyframes progressShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ─── Utility animation classes ────────────────────────────── */
+.mira-float { animation: miraFloat 3.2s ease-in-out infinite; }
+.mira-shake { animation: miraShake 0.55s ease-in-out infinite; }
+.mira-tilt  { animation: miraTilt  2s ease-in-out infinite; }
+.mira-scan  { animation: miraScan  1.6s ease-in-out infinite; }
+.mira-blink { animation: miraBlink 4s ease-in-out infinite; }
+
+.slide-up    { animation: slideUp    0.3s ease-out forwards; }
+.fade-in     { animation: fadeIn     0.25s ease-out forwards; }
+.message-in  { animation: messageIn  0.25s ease-out forwards; }
+
+/* ─── Scan ring animation ───────────────────────────────────── */
+.scan-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 2px solid #818cf8;
+  pointer-events: none;
+}
+.scan-ring-1 { animation: scanRingOut 1.6s ease-out infinite; }
+.scan-ring-2 { animation: scanRingOut 1.6s ease-out infinite 0.8s; }
+
+/* ─── Glow behind Mira ─────────────────────────────────────── */
+.mira-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ─── Progress bar shimmer ─────────────────────────────────── */
+.progress-shimmer {
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 40%, #7c3aed 100%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  animation: progressShimmer 1.5s linear infinite;
 }
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e0d7f5; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c4b5fd; }
+
+/* ─── Custom focus ring ────────────────────────────────────── */
+:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; }
