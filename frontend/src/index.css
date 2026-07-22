@@ -149,6 +149,9 @@ body {
     background-position:200% center;
   }
 }
+p {
+  margin: 0;
+}
 
 
 /* ─── Utility Animation Classes ────────────────────────────── */
