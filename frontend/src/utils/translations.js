@@ -1,0 +1,70 @@
+export const translations = {
+  en: {
+    title: "Mira AI Demo",
+    back: "Back",
+    chooseApp: "Choose an App",
+    chooseAppDesc: "Tap an app to open it, then use Mira to scan for cyber threats",
+    viewingApp: "Viewing {app} — Click 🛡️ Mira to scan for threats",
+    hint: "💡 Each app contains suspicious content for Mira to detect",
+    scanNow: "🔍 Scan Now",
+    scanning: "Scanning...",
+    miraSecurity: "Mira Security",
+    readyToScan: "Ready to scan this screen?",
+    readyDesc: "Mira will capture the current app and check for cyber threats using AI.",
+    viewReport: "View Full Report",
+    scanAgain: "Scan Again",
+    allClear: "All Clear!",
+    riskLevel: "Risk Level",
+    confidence: "Confidence Score",
+    explanation: "Explanation",
+    indicators: "Indicators",
+    actions: "Recommended Actions",
+    affected: "Affected Elements",
+    close: "Close",
+    safe: "Safe",
+    medium: "Medium",
+    high: "High",
+    critical: "Critical",
+    urgency: "Urgency",
+    dataRisk: "Data Risk",
+    financialRisk: "Financial Risk",
+  },
+  mm: {
+    title: "မိုင်ရာ AI သရုပ်ပြ",
+    back: "နောက်သို့",
+    chooseApp: "အက်ပ်တစ်ခု ရွေးချယ်ပါ",
+    chooseAppDesc: "အက်ပ်ကိုနှိပ်ပြီး ဖွင့်ပါ၊ ထို့နောက် အန္တရာယ်များကို စစ်ဆေးရန် မိုင်ရာကို သုံးပါ",
+    viewingApp: "{app} ကို ကြည့်ရှုနေသည် — အန္တရာယ်များကို စကင်ဖတ်ရန် 🛡️ မိုင်ရာကို နှိပ်ပါ",
+    hint: "💡 အက်ပ်တစ်ခုစီတွင် မိုင်ရာ ရှာဖွေနိုင်သည့် သံသယဖြစ်ဖွယ်ရာများ ပါရှိသည်",
+    scanNow: "🔍 ယခု စကင်ဖတ်ရန်",
+    scanning: "စကင်ဖတ်နေသည်...",
+    miraSecurity: "မိုင်ရာ လုံခြုံရေး",
+    readyToScan: "ဤမျက်နှာပြင်ကို စကင်ဖတ်မလား?",
+    readyDesc: "မိုင်ရာသည် မျက်နှာပြင်ကို ပုံရိပ်ဖမ်းယူပြီး AI စနစ်ဖြင့် အန္တရာယ်များကို စစ်ဆေးပေးမည်ဖြစ်သည်။",
+    viewReport: "အစီရင်ခံစာ အပြည့်အစုံဖတ်ရန်",
+    scanAgain: "ထပ်မံ စကင်ဖတ်ရန်",
+    allClear: "ဘေးကင်းပါသည်!",
+    riskLevel: "အန္တရာယ်အဆင့်",
+    confidence: "ယုံကြည်စိတ်ချရမှု ရမှတ်",
+    explanation: "ရှင်းလင်းချက်",
+    indicators: "သံသယဖြစ်ဖွယ် အချက်များ",
+    actions: "လုပ်ဆောင်ရန် အကြံပြုချက်များ",
+    affected: "ထိခိုက်နိုင်သော နေရာများ",
+    close: "ပိတ်မည်",
+    safe: "ဘေးကင်းသည်",
+    medium: "အလယ်အလတ်",
+    high: "မြင့်မားသည်",
+    critical: "အလွန်စိုးရိမ်ရသည်",
+    urgency: "အရေးတကြီးလိုအပ်မှု",
+    dataRisk: "ဒေတာ ဆုံးရှုံးနိုင်ခြေ",
+    financialRisk: "ငွေကြေး ဆုံးရှုံးနိုင်ခြေ",
+  }
+};
+
+export const getTranslation = (lang, key, replacements = {}) => {
+  let text = translations[lang]?.[key] || translations['en']?.[key] || key;
+  Object.keys(replacements).forEach(placeholder => {
+    text = text.replace(`{${placeholder}}`, replacements[placeholder]);
+  });
+  return text;
+};

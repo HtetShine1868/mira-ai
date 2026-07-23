@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ─── Global Reset ─────────────────────────────────────────── */
 *, 
@@ -278,4 +280,144 @@ p {
 :focus-visible {
   outline:2px solid #7c3aed;
   outline-offset:2px;
+}
+
+
+/* ─── Risk Gauge Animation ─────────────────────────────────── */
+
+@keyframes gaugeAnimation {
+  from {
+    stroke-dashoffset: var(--gauge-circumference, 283);
+  }
+  to {
+    stroke-dashoffset: var(--gauge-target, 0);
+  }
+}
+
+.gauge-fill {
+  animation: gaugeAnimation 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes gaugeNumberCount {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.gauge-number {
+  animation: gaugeNumberCount 0.6s 0.4s ease-out both;
+}
+
+
+/* ─── Chat Message Animation ──────────────────────────────── */
+
+@keyframes chatMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chat-message-in {
+  animation: chatMessageIn 0.3s ease-out forwards;
+}
+
+
+/* ─── Typing Indicator ─────────────────────────────────────── */
+
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6366f1;
+  margin: 0 2px;
+}
+
+.typing-dot:nth-child(1) { animation: typingDot 1.2s infinite 0s; }
+.typing-dot:nth-child(2) { animation: typingDot 1.2s infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: typingDot 1.2s infinite 0.4s; }
+
+
+/* ─── Phase Transition ─────────────────────────────────────── */
+
+@keyframes phaseSlideLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(-20px); opacity: 0; }
+}
+
+@keyframes phaseSlideRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes phaseSlideBackLeft {
+  from { transform: translateX(-20px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.phase-enter-chat {
+  animation: phaseSlideRight 0.3s ease-out forwards;
+}
+
+.phase-enter-summary {
+  animation: phaseSlideBackLeft 0.3s ease-out forwards;
+}
+
+
+/* ─── Question Bubble Animation ────────────────────────────── */
+
+@keyframes bubblePop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.bubble-pop {
+  animation: bubblePop 0.35s ease-out both;
+}
+
+.bubble-pop:nth-child(1) { animation-delay: 0.1s; }
+.bubble-pop:nth-child(2) { animation-delay: 0.18s; }
+.bubble-pop:nth-child(3) { animation-delay: 0.26s; }
+.bubble-pop:nth-child(4) { animation-delay: 0.34s; }
+.bubble-pop:nth-child(5) { animation-delay: 0.42s; }
+
+
+/* ─── Chat Scrollbar ───────────────────────────────────────── */
+
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }

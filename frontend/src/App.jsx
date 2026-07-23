@@ -1,27 +1,18 @@
 import React from 'react';
-import { MiraWidget } from './components/MiraWidget';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Demo from './pages/Demo';
+import Result from './pages/Result';
 
 function App() {
   return (
-    <div style={{ padding: '40px', fontFamily: 'sans-serif' }}>
-      <h1>Mira Dashboard</h1>
-      
-      <div 
-        style={{ 
-          border: '2px solid #333', 
-          padding: '20px', 
-          width: '300px',
-          height: '500px',
-          backgroundColor: '#f0f4f8' 
-        }}
-      >
-        <h2>Sample Content</h2>
-        <p>Use the Mira widget to scan your entire laptop screen.</p>
-      </div>
-
-      {/* Mira Floating Widget */}
-      <MiraWidget />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/result" element={<Result />} />
+      </Routes>
+    </Router>
   );
 }
 

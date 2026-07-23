@@ -1,3 +1,6 @@
+// ─── Error Utilities ──────────────────────────────────────────────────────────
+// Re-exported from correct location for the project structure.
+
 export const ERROR_CODES = {
   CAPTURE_CANCELLED: 'CAPTURE_CANCELLED',
   CAPTURE_UNSUPPORTED: 'CAPTURE_UNSUPPORTED',
@@ -36,7 +39,7 @@ export const getErrorDisplay = (error) => {
   };
 
   const hints = {
-    [ERROR_CODES.CAPTURE_CANCELLED]: 'Select "Entire screen" in the browser prompt to scan.',
+    [ERROR_CODES.CAPTURE_CANCELLED]: 'Click Scan to try again.',
     [ERROR_CODES.CAPTURE_UNSUPPORTED]: 'Use Chrome, Edge, or Firefox on localhost or HTTPS.',
     [ERROR_CODES.CAPTURE_FAILED]: 'Try scanning again or refresh the page.',
     [ERROR_CODES.NETWORK_OFFLINE]: 'Check your Wi‑Fi or mobile data, then try again.',
